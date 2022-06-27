@@ -9,7 +9,7 @@
    - name: Install docker
      action: yum name=docker state=present
    - name: Start docker
-     action: service name=docker state=started enabled: yes
+     action: service name=docker state=started enabled=yes
    - name: Start a container
      docker_container:
        name: myimage
