@@ -1,19 +1,19 @@
----#Ansible playbook
+---
  - hosts: dev
    become: yes
    tasks:
-    - name: Install pip
-      action: yum name=pip state=present
-    - name: Install docker py
-      action: pip name=docker-py state=present
-    - name: Install docker
-      action: yum name=docker state=present
-    - name: Start docker
-      action: service pkg=docker state=started
-    - name: Restart a container
-      docker_container:
-          name: myimage
-          image: "rohitvasta/myimage:{{tag}}"
-          state: started
-          ports:
-            - 0.0.0.0:8080:8080
+   - name: Install pip
+     action: yum name=pip state=present
+   - name: Install docker-py
+     action: pip name=docker-py state=present
+   - name: Install docker
+     action: yum name=docker state=present
+   - name: Start docker
+     action: service pkg=docker state=started
+   - name: Start a container
+     docker_container:
+       name: myimage
+       image: "rohitvasta/myimage:{{tag}}"
+       state: started
+       ports:
+          - 0.0.0.0:8080:8080
